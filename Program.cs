@@ -1,9 +1,9 @@
 ﻿using ConsoleRecordsTestBed;
 using static ConsoleRecordsTestBed.AddTransactionDefaults;
 
-var genesisTransaction = Transaction.Create("GenesisTransaction");
+var genesisTransaction = Transaction.CreateNew("GenesisTransaction");
 
-var block = Block.Create();
+var block = Block.CreateNew();
 
 AddTransaction addTransaction = AddUniqueTrasansactionToBlock;
 block = addTransaction(block, genesisTransaction);

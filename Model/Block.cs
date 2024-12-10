@@ -13,10 +13,10 @@ public readonly record struct BlockId(Guid Value)
 
 public static class Block
 {
-    public static BlockType Create(params TransactionType[] transactions) 
+    public static BlockType CreateNew(params TransactionType[] transactions) 
         => new(BlockId.NewBlockId(), transactions);
 
-    public static BlockType Create(BlockId blockId, params TransactionType[] transactions) 
+    public static BlockType CreateNew(BlockId blockId, params TransactionType[] transactions) 
         => new(blockId, transactions);
 }
 

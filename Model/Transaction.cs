@@ -11,9 +11,9 @@ public record TransactionId(Guid Value)
 
 public static class Transaction
 {
-    public static TransactionType Create(string description) 
+    public static TransactionType CreateNew(string description) 
         => new(TransactionId.NewTransactionId(), description);
 
-    public static TransactionType Create(TransactionId transactionId, string description) 
+    public static TransactionType CreateNew(TransactionId transactionId, string description) 
         => new(transactionId, description);
 }
