@@ -6,7 +6,7 @@ public record TransactionId(Guid Value)
 {
     public static TransactionId NewTransactionId() => new(Guid.NewGuid());
 
-    public override string ToString() => this.Value.ToString();
+    public override string ToString() => $"transaction-{this.Value.ToString()}";
 }
 
 public static class Transaction

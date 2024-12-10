@@ -8,7 +8,7 @@ public readonly record struct BlockId(Guid Value)
 
     public static BlockId BlockWithId(Guid guid) => new(guid);
 
-    public override string ToString() => this.Value.ToString();
+    public override string ToString() => $"block-{this.Value.ToString()}";
 }
 
 public static class Block
