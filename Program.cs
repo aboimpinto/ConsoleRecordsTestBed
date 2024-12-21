@@ -2,6 +2,7 @@
 using static ConsoleRecordsTestBed.AddTransactionDefaults;
 
 var genesisTransaction = Transaction.CreateNew("GenesisTransaction");
+var genesisTransaction_ObjectOriented = Transaction_ObjertOriented.CreateNew("GenesisTransaction");
 
 var block = Block.CreateNew();
 
