@@ -20,3 +20,31 @@ public static class Block
         => new(blockId, transactions);
 }
 
+public abstract record Signed(string Signatory, string Signature);
+
+public record BlockSigned : Signed
+{
+    public BlockId BlockId { get; }
+
+    public TransactionType[] Transactions { get;}
+
+    private BlockSigned(
+        BlockId BlockId, 
+        TransactionType[] Transactions,
+        string Signatory, 
+        string Signature) : base(Signatory, Signature)
+    {
+        return new(BlockId, Transactions);
+    }
+
+    // public BlockId BlockId { get; }
+    // public TransactionType[] Transactions { get;}
+
+    // public string Signatory { get; }
+    // public string Signature { get; }
+
+    public static BlockSigned CreateNew(
+        BlockId blockId, 
+        TransactionType[] transactions)
+        => new BlockSigned(blockId, transactions, "Signatory", "Signature");
+}
