@@ -9,6 +9,9 @@ var block = Block.CreateNew();
 AddTransaction addTransaction = AddUniqueTrasansactionToBlock;
 block = addTransaction(block, genesisTransaction);
 
+var signedBlock = BlockSigned.CreateNew(block);
+var signedBlockInJson = signedBlock.ToJson<BlockSigned>();
+
 Console.ReadLine();
 
 // var principalProfile = new Profile("PrincipalProfile", "PrincipalProfileSigningAddress", "PrincipalProfileEncryptingAddress", true);

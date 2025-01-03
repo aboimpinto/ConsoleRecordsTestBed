@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace ConsoleRecordsTestBed;
 
 public record BlockType(BlockId BlockId, TransactionType[] Transactions);
@@ -34,17 +36,21 @@ public record BlockSigned : Signed
         string Signatory, 
         string Signature) : base(Signatory, Signature)
     {
-        return new(BlockId, Transactions);
+        this.BlockId = BlockId;
+        this.Transactions = Transactions;
     }
-
-    // public BlockId BlockId { get; }
-    // public TransactionType[] Transactions { get;}
-
-    // public string Signatory { get; }
-    // public string Signature { get; }
 
     public static BlockSigned CreateNew(
         BlockId blockId, 
         TransactionType[] transactions)
         => new BlockSigned(blockId, transactions, "Signatory", "Signature");
+
+    public static BlockSigned CreateNew(
+        BlockType block)
+        => new BlockSigned(block.BlockId, block.Transactions, "Signatory", "Signature");
+
+    public string ToJson<T>() where T : Signed
+    {
+        return JsonSerializer.Serialize(this as T);
+    }
 }
