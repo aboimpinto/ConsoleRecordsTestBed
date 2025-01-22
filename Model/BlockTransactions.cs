@@ -1,5 +1,5 @@
 
-namespace ConsoleRecordsTestBed;
+namespace ConsoleRecordsTestBed.Model;
 
 public delegate BlockType AddTransaction(BlockType block, TransactionType transaction);
 

@@ -1,16 +1,38 @@
 ﻿using ConsoleRecordsTestBed;
-using static ConsoleRecordsTestBed.AddTransactionDefaults;
+using ConsoleRecordsTestBed.Model;
 
-var genesisTransaction = Transaction.CreateNew("GenesisTransaction");
-var genesisTransaction_ObjectOriented = Transaction_ObjertOriented.CreateNew("GenesisTransaction");
+// var genesisTransaction = Transaction.CreateNew("GenesisTransaction");
+// var genesisTransaction_ObjectOriented = Transaction_ObjertOriented.CreateNew("GenesisTransaction");
 
-var block = Block.CreateNew();
+// var block = Block.CreateNew();
 
-AddTransaction addTransaction = AddUniqueTrasansactionToBlock;
-block = addTransaction(block, genesisTransaction);
+// AddTransaction addTransaction = AddUniqueTrasansactionToBlock;
+// block = addTransaction(block, genesisTransaction);
 
-var signedBlock = BlockSigned.CreateNew(block);
-var signedBlockInJson = signedBlock.ToJson<BlockSigned>();
+
+// ###############################################
+// Signature of simple object 
+
+// var usigned = new UnsignedObject(Guid.NewGuid(), "objectValue");
+// var signed = ObjectSigner.Sign(usigned, "Paulo");
+
+// Console.WriteLine($"Signed Object ID: {signed.ObjectId}");
+// Console.WriteLine($"Signed Object Value: {signed.Value}");
+// Console.WriteLine($"Signatory: {signed.Signatory}");
+// Console.WriteLine($"Signature: {signed.Signature}");
+
+// ###############################################
+
+
+// ###############################################
+// Block signature
+
+var unsigned = UnsignedBlock.CreateNew(
+    new BlockIndex(1),
+    []);
+
+// ###############################################
+
 
 Console.ReadLine();
 
