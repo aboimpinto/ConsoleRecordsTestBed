@@ -1,5 +1,5 @@
 ﻿using ConsoleRecordsTestBed;
-using ConsoleRecordsTestBed.Model;
+using ConsoleRecordsTestBed.Model.Block;
 
 // var genesisTransaction = Transaction.CreateNew("GenesisTransaction");
 // var genesisTransaction_ObjectOriented = Transaction_ObjertOriented.CreateNew("GenesisTransaction");
@@ -27,10 +27,13 @@ using ConsoleRecordsTestBed.Model;
 // ###############################################
 // Block signature
 
-var unsigned = UnsignedBlock.CreateNew(
+var unsignedBlock = UnsignedBlock.CreateNew(
     new BlockIndex(1),
+    BlockId.EmptyBlockId(),
+    BlockId.WithBlockId(Guid.NewGuid()),
     []);
 
+var signedBlock = unsignedBlock.FinalizeAndSign("Paulo Aboim Pinto", "Signature");
 // ###############################################
 
 
