@@ -3,6 +3,12 @@ namespace ConsoleRecordsTestBed.Model.Block;
 
 public static class UnsignedBlock
 {
+    public static UnsignedBlockType CreateGenesisBlock() => CreateNew(
+        new BlockIndex(1),
+        new BlockId(Guid.Parse("{7359ccef-763b-4adf-8f33-45db84c5121c}")),
+        new BlockId(Guid.Parse("{b4d22ab7-5c77-488f-b48b-33e288f97636}")),
+        []);
+
     public static UnsignedBlockType CreateNew(
         BlockIndex blockIndex, 
         BlockId PreviousBlockId, 

@@ -27,13 +27,9 @@ using ConsoleRecordsTestBed.Model.Block;
 // ###############################################
 // Block signature
 
-var unsignedBlock = UnsignedBlock.CreateNew(
-    new BlockIndex(1),
-    BlockId.EmptyBlockId(),
-    BlockId.WithBlockId(Guid.NewGuid()),
-    []);
+var unsignedGenesisBlock = UnsignedBlock.CreateGenesisBlock();
 
-var signedBlock = unsignedBlock.FinalizeAndSign("Paulo Aboim Pinto", "Signature");
+var signedBlock = unsignedGenesisBlock.FinalizeAndSign("Paulo Aboim Pinto", "Signature");
 // ###############################################
 
 
