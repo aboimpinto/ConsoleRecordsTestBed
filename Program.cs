@@ -45,22 +45,30 @@ using ConsoleRecordsTestBed.Model.Transactions;
 
 var jsonSerializerOptions = new JsonSerializerOptions()
 {
-    WriteIndented = true
+    WriteIndented = false
 };
 
-var unsignedGenesisBlock = UnsignedBlock.CreateGenesisBlock();
+var rewardTransaction = UnsignedTransaction.Create(
+    new TransactionId(Guid.NewGuid()),
+    new RewardPayload("HUSH", "5")); 
 
-var rawJson = "{\n  \"Token\": \"HUSH\",\n  \"Reward\": \"5\",\n  \"TransactionId\": \"9e972141-178f-476d-ace6-ceeb169a342f\",\n  \"TimeStamp\": \"2025-01-27T08:10:07.1431725Z\",\n  \"PayloadKind\": \"8e29c7c1-f2d8-4ff3-9d97-e927e3f40c79\",\n  \"IssuerPublicKey\": \"Paulo Public Address\"\n}";
-var xxx = JsonSerializer.Deserialize<UnsignedRewardTransactionType>(rawJson);
+var json = rewardTransaction.ToJson(jsonSerializerOptions);
 
-var unsignedHushRewardTrasaction = UnsignedRewardTransaction.CreateHushRewardTrasaction(
-    "Paulo Public Address", 
-    "HUSH", 
-    "5");          // TODO: The  reward should be obtained from the settings
+var newTransaction = UnsignedTransaction.Create<RewardPayload>(json);
 
-var json = unsignedHushRewardTrasaction.ToJson(jsonSerializerOptions);
+// var unsignedGenesisBlock = UnsignedBlock.CreateGenesisBlock();
 
-var signedBlock = unsignedGenesisBlock.FinalizeAndSign("Paulo Aboim Pinto", "Signature");
+// var rawJson = "{\n  \"Token\": \"HUSH\",\n  \"Reward\": \"5\",\n  \"TransactionId\": \"9e972141-178f-476d-ace6-ceeb169a342f\",\n  \"TimeStamp\": \"2025-01-27T08:10:07.1431725Z\",\n  \"PayloadKind\": \"8e29c7c1-f2d8-4ff3-9d97-e927e3f40c79\",\n  \"IssuerPublicKey\": \"Paulo Public Address\"\n}";
+// var xxx = JsonSerializer.Deserialize<UnsignedRewardTransactionType>(rawJson);
+
+// var unsignedHushRewardTrasaction = UnsignedRewardTransaction.CreateHushRewardTrasaction(
+//     "Paulo Public Address", 
+//     "HUSH", 
+//     "5");          // TODO: The  reward should be obtained from the settings
+
+// var json = unsignedHushRewardTrasaction.ToJson(jsonSerializerOptions);
+
+// var signedBlock = unsignedGenesisBlock.FinalizeAndSign("Paulo Aboim Pinto", "Signature");
 
 // "{\n  \"Token\": \"HUSH\",\n  \"Reward\": \"5\",\n  \"TransactionId\": \"9e972141-178f-476d-ace6-ceeb169a342f\",\n  \"TimeStamp\": \"2025-01-27T08:10:07.1431725Z\",\n  \"PayloadKind\": \"8e29c7c1-f2d8-4ff3-9d97-e927e3f40c79\",\n  \"IssuerPublicKey\": \"Paulo Public Address\"\n}"
 // ###############################################
