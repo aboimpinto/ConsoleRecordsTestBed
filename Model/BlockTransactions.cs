@@ -1,9 +1,10 @@
 
 using ConsoleRecordsTestBed.Model.Block;
+using ConsoleRecordsTestBed.Model.Transactions;
 
 namespace ConsoleRecordsTestBed.Model;
 
-public delegate BlockType AddTransaction(BlockType block, TransactionType transaction);
+public delegate BlockType AddTransaction(BlockType block, AbstractTransaction transaction);
 
 public static class AddTransactionDefaults
 {

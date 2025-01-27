@@ -1,3 +1,5 @@
+using ConsoleRecordsTestBed.Model.Transactions;
+
 namespace ConsoleRecordsTestBed.Model.Block;
 
 public record UnsignedBlockType : AbstractBlock
@@ -7,7 +9,7 @@ public record UnsignedBlockType : AbstractBlock
         BlockIndex BlockIndex, 
         BlockId PreviousBlockId,
         BlockId NextBlockId,
-        TransactionType[] Transactions) : base(
+        AbstractTransaction[] Transactions) : base(
             BlockId, 
             BlockIndex, 
             PreviousBlockId, 

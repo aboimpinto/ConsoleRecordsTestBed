@@ -1,3 +1,5 @@
+using ConsoleRecordsTestBed.Model.Transactions;
+
 namespace ConsoleRecordsTestBed.Model.Block;
 
 public abstract record AbstractBlock(
@@ -5,4 +7,4 @@ public abstract record AbstractBlock(
     BlockIndex BlockIndex,
     BlockId PreviousBlockId,
     BlockId NextBlockId,
-    TransactionType[] Transactions);
+    AbstractTransaction[] Transactions);

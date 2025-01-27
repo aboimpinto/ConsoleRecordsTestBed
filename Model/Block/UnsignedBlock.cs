@@ -1,3 +1,5 @@
+using ConsoleRecordsTestBed.Model.Transactions;
+
 namespace ConsoleRecordsTestBed.Model.Block;
 
 
@@ -13,7 +15,7 @@ public static class UnsignedBlock
         BlockIndex blockIndex, 
         BlockId PreviousBlockId, 
         BlockId NextBlockId, 
-        params TransactionType[] transactions) 
+        params AbstractTransaction[] transactions) 
         => new(
             BlockId.NewBlockId(), 
             blockIndex, 
@@ -26,7 +28,7 @@ public static class UnsignedBlock
         BlockIndex blockIndex, 
         BlockId PreviousBlockId,
         BlockId NextBlockId, 
-        params TransactionType[] transactions) 
+        params AbstractTransaction[] transactions) 
         => new(
             blockId, 
             blockIndex,

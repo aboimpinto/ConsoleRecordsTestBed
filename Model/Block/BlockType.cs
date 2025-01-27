@@ -1,3 +1,5 @@
+using ConsoleRecordsTestBed.Model.Transactions;
+
 namespace ConsoleRecordsTestBed.Model.Block;
 
 public record BlockType : UnsignedBlockType, ISignature
@@ -16,7 +18,7 @@ public record BlockType : UnsignedBlockType, ISignature
         string hash,
         string signature,
         string signatory,
-        TransactionType[] Transactions) : base(
+        AbstractTransaction[] Transactions) : base(
             BlockId, 
             BlockIndex, 
             PreviousBlockId, 
