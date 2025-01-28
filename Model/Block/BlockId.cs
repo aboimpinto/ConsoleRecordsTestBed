@@ -1,5 +1,9 @@
+using System.Text.Json.Serialization;
+using ConsoleRecordsTestBed.Model.Block.JsonConverters;
+
 namespace ConsoleRecordsTestBed.Model.Block;
 
+[JsonConverter(typeof(BlockIdConverter))]
 public readonly record struct BlockId(Guid Value)
 {
     public static BlockId NewBlockId() => new(Guid.NewGuid());

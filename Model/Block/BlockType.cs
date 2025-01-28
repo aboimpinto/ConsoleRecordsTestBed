@@ -18,7 +18,7 @@ public record BlockType : UnsignedBlockType, ISignature
         string hash,
         string signature,
         string signatory,
-        AbstractTransaction[] Transactions) : base(
+        TransactionBase[] Transactions) : base(
             BlockId, 
             BlockIndex, 
             PreviousBlockId, 

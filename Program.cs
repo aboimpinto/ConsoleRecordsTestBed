@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.Versioning;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ConsoleRecordsTestBed;
@@ -28,51 +29,26 @@ using ConsoleRecordsTestBed.Model.Transactions;
 // ###############################################
 
 
-// ###############################################
-// Serialization of records
-// var jsonSerializerOptions = new JsonSerializerOptions()
-// {
-//     WriteIndented = true
-// };
-
-// var myObject = new MyObject(new MyKey(Guid.NewGuid()), "My Name", new AmountPayed("EUR", 1000));
-
-// var json = JsonSerializer.Serialize(myObject, jsonSerializerOptions);
-// ###############################################
-
-// ###############################################
-// Block signature
-
 var jsonSerializerOptions = new JsonSerializerOptions()
 {
-    WriteIndented = false
+    WriteIndented = true
 };
+
+var unsignedGenesisBlock = UnsignedBlock.CreateGenesisBlock();
+
+var jsonBlock = unsignedGenesisBlock.ToJson(jsonSerializerOptions);
 
 var rewardTransaction = UnsignedTransaction.Create(
     new TransactionId(Guid.NewGuid()),
+    Guid.Parse("8e29c7c1-f2d8-4ff3-9d97-e927e3f40c79"),
     new RewardPayload("HUSH", "5")); 
 
-var json = rewardTransaction.ToJson(jsonSerializerOptions);
+var unsignedGenesisBlockWithRewardTransaction = unsignedGenesisBlock with 
+    { Transactions = [..unsignedGenesisBlock.Transactions, rewardTransaction] };
 
-var newTransaction = UnsignedTransaction.Create<RewardPayload>(json);
+var jsonBlockWithRewardTransaction = unsignedGenesisBlockWithRewardTransaction.ToJson(jsonSerializerOptions);
 
-// var unsignedGenesisBlock = UnsignedBlock.CreateGenesisBlock();
-
-// var rawJson = "{\n  \"Token\": \"HUSH\",\n  \"Reward\": \"5\",\n  \"TransactionId\": \"9e972141-178f-476d-ace6-ceeb169a342f\",\n  \"TimeStamp\": \"2025-01-27T08:10:07.1431725Z\",\n  \"PayloadKind\": \"8e29c7c1-f2d8-4ff3-9d97-e927e3f40c79\",\n  \"IssuerPublicKey\": \"Paulo Public Address\"\n}";
-// var xxx = JsonSerializer.Deserialize<UnsignedRewardTransactionType>(rawJson);
-
-// var unsignedHushRewardTrasaction = UnsignedRewardTransaction.CreateHushRewardTrasaction(
-//     "Paulo Public Address", 
-//     "HUSH", 
-//     "5");          // TODO: The  reward should be obtained from the settings
-
-// var json = unsignedHushRewardTrasaction.ToJson(jsonSerializerOptions);
-
-// var signedBlock = unsignedGenesisBlock.FinalizeAndSign("Paulo Aboim Pinto", "Signature");
-
-// "{\n  \"Token\": \"HUSH\",\n  \"Reward\": \"5\",\n  \"TransactionId\": \"9e972141-178f-476d-ace6-ceeb169a342f\",\n  \"TimeStamp\": \"2025-01-27T08:10:07.1431725Z\",\n  \"PayloadKind\": \"8e29c7c1-f2d8-4ff3-9d97-e927e3f40c79\",\n  \"IssuerPublicKey\": \"Paulo Public Address\"\n}"
-// ###############################################
-
+var block = UnsignedBlock.CreateNew(jsonBlockWithRewardTransaction);
 
 Console.ReadLine();
 

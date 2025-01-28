@@ -8,9 +8,9 @@ public delegate BlockType AddTransaction(BlockType block, AbstractTransaction tr
 
 public static class AddTransactionDefaults
 {
-    public static AddTransaction AddUniqueTrasansactionToBlock => (block, transaction) => 
-        block.Transactions.Contains(transaction) 
-            ? block
-            : block with { Transactions = [..block.Transactions, transaction] };
+    // public static AddTransaction AddUniqueTrasansactionToBlock => (block, transaction) => 
+    //     block.Transactions.Contains(transaction) 
+    //         ? block
+    //         : block with { Transactions = [..block.Transactions, transaction] };
 
 }

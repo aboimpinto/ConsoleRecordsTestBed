@@ -1,3 +1,4 @@
+using System.Text.Json;
 using ConsoleRecordsTestBed.Model.Transactions;
 
 namespace ConsoleRecordsTestBed.Model.Block;
@@ -15,7 +16,7 @@ public static class UnsignedBlock
         BlockIndex blockIndex, 
         BlockId PreviousBlockId, 
         BlockId NextBlockId, 
-        params AbstractTransaction[] transactions) 
+        params TransactionBase[] transactions) 
         => new(
             BlockId.NewBlockId(), 
             blockIndex, 
@@ -28,13 +29,16 @@ public static class UnsignedBlock
         BlockIndex blockIndex, 
         BlockId PreviousBlockId,
         BlockId NextBlockId, 
-        params AbstractTransaction[] transactions) 
+        params TransactionBase[] transactions) 
         => new(
             blockId, 
             blockIndex,
             PreviousBlockId,
             NextBlockId, 
             transactions);
+
+    public static UnsignedBlockType CreateNew(string json) => 
+        JsonSerializer.Deserialize<UnsignedBlockType>(json);
 
     public static string GetBlockHashCode(this UnsignedBlockType unsignedBlock) => unsignedBlock.GetHashCode().ToString();
 

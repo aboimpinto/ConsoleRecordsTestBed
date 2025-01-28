@@ -1,3 +1,4 @@
+using System.Text.Json;
 using ConsoleRecordsTestBed.Model.Transactions;
 
 namespace ConsoleRecordsTestBed.Model.Block;
@@ -9,12 +10,17 @@ public record UnsignedBlockType : AbstractBlock
         BlockIndex BlockIndex, 
         BlockId PreviousBlockId,
         BlockId NextBlockId,
-        AbstractTransaction[] Transactions) : base(
+        TransactionBase[] Transactions) : base(
             BlockId, 
             BlockIndex, 
             PreviousBlockId, 
             NextBlockId, 
             Transactions)
     {
+    }
+
+    public string ToJson(JsonSerializerOptions options)
+    {
+        return JsonSerializer.Serialize(this, options);
     }
 }

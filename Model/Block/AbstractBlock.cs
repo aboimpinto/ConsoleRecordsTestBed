@@ -7,4 +7,4 @@ public abstract record AbstractBlock(
     BlockIndex BlockIndex,
     BlockId PreviousBlockId,
     BlockId NextBlockId,
-    AbstractTransaction[] Transactions);
+    TransactionBase[] Transactions);
