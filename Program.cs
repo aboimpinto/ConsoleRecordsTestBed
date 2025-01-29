@@ -1,11 +1,8 @@
-﻿using System.ComponentModel;
-using System.Runtime.Versioning;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using ConsoleRecordsTestBed;
 using ConsoleRecordsTestBed.Model.Block;
 using ConsoleRecordsTestBed.Model.Transactions;
-using ConsoleRecordsTestBed.Model.Transactions.RewardTransaction;
+using ConsoleRecordsTestBed.Model.Transactions.Payloads;
 
 // var genesisTransaction = Transaction.CreateNew("GenesisTransaction");
 // var genesisTransaction_ObjectOriented = Transaction_ObjertOriented.CreateNew("GenesisTransaction");
