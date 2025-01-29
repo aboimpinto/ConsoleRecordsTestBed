@@ -6,7 +6,7 @@ public abstract record AbstractTransaction(
     TransactionId TransactionId,
     DateTime TimeStamp,
     PayloadKind PayloadKind,
-    string IssuerPublicKey
+    string IssuerPublicAddress
     )
 {
     public abstract string ToJson(JsonSerializerOptions options);

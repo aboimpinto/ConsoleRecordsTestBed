@@ -5,6 +5,7 @@ using System.Text.Json.Serialization;
 using ConsoleRecordsTestBed;
 using ConsoleRecordsTestBed.Model.Block;
 using ConsoleRecordsTestBed.Model.Transactions;
+using ConsoleRecordsTestBed.Model.Transactions.RewardTransaction;
 
 // var genesisTransaction = Transaction.CreateNew("GenesisTransaction");
 // var genesisTransaction_ObjectOriented = Transaction_ObjertOriented.CreateNew("GenesisTransaction");
@@ -38,17 +39,22 @@ var unsignedGenesisBlock = UnsignedBlock.CreateGenesisBlock();
 
 var jsonBlock = unsignedGenesisBlock.ToJson(jsonSerializerOptions);
 
-var rewardTransaction = UnsignedTransaction.Create(
+var unsignedRewardTransaction = UnsignedTransaction.Create(
     new TransactionId(Guid.NewGuid()),
     Guid.Parse("8e29c7c1-f2d8-4ff3-9d97-e927e3f40c79"),
     new RewardPayload("HUSH", "5")); 
 
+var signedRewardTransaction = unsignedRewardTransaction.SignIt();
+var finalizedRewardTransaction = signedRewardTransaction.HashIt();
+
 var unsignedGenesisBlockWithRewardTransaction = unsignedGenesisBlock with 
-    { Transactions = [..unsignedGenesisBlock.Transactions, rewardTransaction] };
+    { Transactions = [..unsignedGenesisBlock.Transactions, unsignedRewardTransaction] };
 
 var jsonBlockWithRewardTransaction = unsignedGenesisBlockWithRewardTransaction.ToJson(jsonSerializerOptions);
 
 var block = UnsignedBlock.CreateNew(jsonBlockWithRewardTransaction);
+
+var newBlockJson = block.ToJson(jsonSerializerOptions);
 
 Console.ReadLine();
 

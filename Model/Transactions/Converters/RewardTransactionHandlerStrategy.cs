@@ -1,4 +1,5 @@
 using System.Text.Json;
+using ConsoleRecordsTestBed.Model.Transactions.RewardTransaction;
 
 namespace ConsoleRecordsTestBed.Model.Transactions.Converters;
 

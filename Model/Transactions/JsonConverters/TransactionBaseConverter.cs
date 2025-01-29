@@ -18,11 +18,6 @@ public class TransactionBaseConverter : JsonConverter<TransactionBase>
             .Single(x => x.CanHandle(payloadKind))
             .Handle(element.GetRawText());
 
-        // if (payloadKind == "8e29c7c1-f2d8-4ff3-9d97-e927e3f40c79")
-        // {
-        //     return (TransactionBase) JsonSerializer.Deserialize<UnsignedTransactionType<RewardPayload>>(element.GetRawText());
-        // }
-
         throw new InvalidOperationException("No specific deserializer found for the transaction type.");
     }
 
